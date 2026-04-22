@@ -22,7 +22,7 @@
 import risc_pkg::*;
 
 module data_memory #(
-    parameter ADDR_W = 10,
+    parameter ADDR_W = 8,
     parameter DATA_W = 8   // One byte per slot
 )(
     input  logic        clk,
@@ -55,18 +55,13 @@ module data_memory #(
     
     // Write logic
     always_ff @(posedge clk) begin
-        if (wr_be[0]) mem[dmem_addr    ] <= dmem_wr_data[ 7: 0];
+        if (dmem_req && dmem_wr_en) begin
+            if (wr_be[0]) mem[dmem_addr]     <= dmem_wr_data[7:0];
+            if (wr_be[1]) mem[dmem_addr + 1] <= dmem_wr_data[15:8];
+            if (wr_be[2]) mem[dmem_addr + 2] <= dmem_wr_data[23:16];
+            if (wr_be[3]) mem[dmem_addr + 3] <= dmem_wr_data[31:24];
+        end
     end
-    always_ff @(posedge clk) begin
-        if (wr_be[1]) mem[dmem_addr + 1] <= dmem_wr_data[15: 8];
-    end
-    always_ff @(posedge clk) begin
-        if (wr_be[2]) mem[dmem_addr + 2] <= dmem_wr_data[23:16];
-    end
-    always_ff @(posedge clk) begin
-        if (wr_be[3]) mem[dmem_addr + 3] <= dmem_wr_data[31:24];
-    end
-    
     // Read logic
     always_comb begin
         if(dmem_req && !dmem_wr_en) begin
