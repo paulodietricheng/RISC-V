@@ -28,7 +28,7 @@ The processor is composed of the following 8 modules:
 - **Branch Control**  
   Evaluates branch conditions and determines control flow.
 
-- **Data Memory (255kB)**  
+- **Data Memory (512kB)**  
   Handles load and store operations.
 
 - **ALU (Arithmetic Logic Unit)**  
