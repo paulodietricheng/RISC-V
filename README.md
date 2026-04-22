@@ -1,6 +1,6 @@
 # Single-Cycle RISC-V Processor (Artix-7 FPGA)
 
-This project implements a **single-cycle RISC-V (RV32I) processor** on an Artix-7 FPGA. It is a minimal yet fully functional design intended for learning, experimentation, and architectural exploration.
+This project implements a **single-cycle RISC-V (RV32I) processor** on an Artix-7 xc7a35tcpg236 FPGA. It is a minimal yet fully functional design intended for learning, experimentation, and architectural exploration.
 
 The processor executes each instruction in a single clock cycle and supports the base **RV32I ISA**.
 
@@ -52,8 +52,8 @@ The processor is composed of the following 8 modules:
 
 | Resource | Usage |
 |----------|------:|
-| LUTs     | 603   |
-| FFs      | 289   |
+| LUTs     | 18878 |
+| FFs      | 4384  |
 
 ---
 
