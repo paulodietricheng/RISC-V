@@ -1,2 +1,85 @@
-# RISC-V
-This repo documents the implementation of a Single Cycle RISC V processor in an ARTIX 7 xc7atcpg236-1 FPGA.
+# Single-Cycle RISC-V Processor (Artix-7 FPGA)
+
+This project implements a **single-cycle RISC-V (RV32I) processor** on an Artix-7 FPGA. It is a minimal yet fully functional design intended for learning, experimentation, and architectural exploration.
+
+The processor executes each instruction in a single clock cycle and supports the base **RV32I ISA**.
+
+---
+
+## Architecture Overview
+
+The processor is composed of the following 8 modules:
+
+- **Instruction Memory (128kB)**  
+  Stores program instructions in hexadecimal format.
+
+- **Fetch**  
+  Handles program counter (PC) updates and instruction fetching.
+
+- **Decode**  
+  Decodes instruction fields and prepares operands.
+
+- **Control**  
+  Generates control signals based on instruction type.
+
+- **Register File**  
+  Provides register read/write functionality.
+
+- **Branch Control**  
+  Evaluates branch conditions and determines control flow.
+
+- **Data Memory (255kB)**  
+  Handles load and store operations.
+
+- **ALU (Arithmetic Logic Unit)**  
+  Executes arithmetic and logical operations.
+
+---
+
+## Features
+
+- Single-cycle execution model
+- Modular and extensible design
+- Synthesizable on Xilinx Artix-7 FPGA
+- Capable of executing simple programs such as:
+  - Maximum value search
+  - Bubble sort
+  - Fibonacci sequence generation
+
+---
+
+## Resource Utilization
+
+| Resource | Usage |
+|----------|------:|
+| LUTs     | 603   |
+| FFs      | 289   |
+
+---
+
+## Performance
+
+- **Maximum Frequency (Fmax):** 99.79 MHz
+
+---
+
+## Implementation Notes
+
+- Designed and synthesized using Xilinx Vivado
+- Instruction memory initialized using hex files
+- Focused on clarity and correctness over optimization
+- Suitable as a foundation for:
+  - Pipelined architectures
+  - Hazard detection/forwarding
+  - Cache integration
+
+---
+
+## Future Improvements
+ - Pipeline implementation (5-stage or deeper)
+ - Hazard detection and forwarding
+ - Expand data memory
+ - Instruction/data cache integration
+ - Branch prediction
+ - Performance optimization (timing and area)
+
