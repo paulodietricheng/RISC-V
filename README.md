@@ -32,7 +32,7 @@ Eight modules wired together into a single combinational datapath. The PC update
 | `register_file` | 32 × 32-bit registers, x0 hardwired to zero |
 | `branch_control` | Evaluates branch conditions, asserts `branch_taken` |
 | `alu` | All 10 RV32I arithmetic and logic operations |
-| `data_memory` | Byte-addressable LUTRAM, supports sign- and zero-extended loads |
+| `data_memory` | 512 B, Byte-addressable LUTRAM, supports sign- and zero-extended loads |
 
 All types, enums, and control structs live in `risc_pkg.sv` and are imported everywhere.
 
