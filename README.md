@@ -55,8 +55,8 @@ Three programs are included and have been verified on hardware.
 | Program | 
 |---|
 | Fibonacci | 
-| Bubble sort | 
 | Max search | 
+| Bubble sort | 
 
 ![Data memory](docs/images/data_memory.png)
 
