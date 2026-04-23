@@ -52,11 +52,6 @@ All types, enums, and control structs live in `risc_pkg.sv` and are imported eve
 
 Three programs are included and have been verified on hardware.
 
-| Program | 
-|---|
-| Fibonacci | 
-| Max search | 
-| Bubble sort | 
 
 ![Data memory](docs/images/data_memory.png)
 
