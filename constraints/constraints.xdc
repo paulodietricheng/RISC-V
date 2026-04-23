@@ -1,7 +1,7 @@
 # Clock - 99.5 MHz oscillator hardwired to W5
 set_property PACKAGE_PIN W5 [get_ports clk]
 set_property IOSTANDARD LVCMOS33 [get_ports clk]
-create_clock -period 10.050 -name sys_clk_pin -waveform {0.000 5.025} -add [get_ports clk]
+create_clock -period 23.5 -name sys_clk_pin -waveform {0.000 5.025} -add [get_ports clk]
 
 # Reset - btnC (active high, inverted in top)
 set_property PACKAGE_PIN U18 [get_ports rst_btn]
