@@ -59,19 +59,6 @@ Three programs are included and have been verified on hardware.
 
 ---
 
-## Repo layout
-
-riscv-single-cycle/
-├── rtl/            # all synthesizable SystemVerilog
-├── sim/            # testbenches
-├── mem/            # .mem hex files for each demo program
-├── asm/            # RISC-V assembly source
-├── constraints/    # Basys 3 XDC file
-├── vivado/         # project file
-└── docs/           # diagrams and waveform screenshots
-
----
-
 ## What's next
 
 - 5-stage pipeline with hazard detection and forwarding
