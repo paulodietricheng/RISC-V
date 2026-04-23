@@ -1,85 +1,68 @@
-# Single-Cycle RISC-V Processor (Artix-7 FPGA)
+# RV32I Single-Cycle Processor
 
-This project implements a **single-cycle RISC-V (RV32I) processor** on an Artix-7 xc7a35tcpg236 FPGA. It is a minimal yet fully functional design intended for learning, experimentation, and architectural exploration.
+![ISA](https://img.shields.io/badge/ISA-RV32I-green) ![Board](https://img.shields.io/badge/board-Basys3-orange) ![Tool](https://img.shields.io/badge/tool-Vivado-red) ![HDL](https://img.shields.io/badge/HDL-SystemVerilog-blue)
 
-The processor executes each instruction in a single clock cycle and supports the base **RV32I ISA**.
+A fully functional RISC-V processor running on a real FPGA — built from scratch in SystemVerilog, one instruction per clock cycle. Every module is hand-rolled: no IP cores, no shortcuts.
 
----
-
-## Architecture Overview
-
-The processor is composed of the following 8 modules:
-
-- **Instruction Memory (128kB)**  
-  Stores program instructions in hexadecimal format.
-
-- **Fetch**  
-  Handles program counter (PC) updates and instruction fetching.
-
-- **Decode**  
-  Decodes instruction fields and prepares operands.
-
-- **Control**  
-  Generates control signals based on instruction type.
-
-- **Register File**  
-  Provides register read/write functionality.
-
-- **Branch Control**  
-  Evaluates branch conditions and determines control flow.
-
-- **Data Memory (512kB)**  
-  Handles load and store operations.
-
-- **ALU (Arithmetic Logic Unit)**  
-  Executes arithmetic and logical operations.
+![Datapath diagram](docs/images/datapath.png)
 
 ---
 
-## Features
+## What it does
 
-- Single-cycle execution model
-- Modular and extensible design
-- Synthesizable on Xilinx Artix-7 FPGA
-- Capable of executing simple programs such as:
-  - Maximum value search
-  - Bubble sort
-  - Fibonacci sequence generation
+Executes the complete RV32I base integer ISA on a Basys 3 board (Artix-7 xc7a35tcpg236). All 40 instructions across all 6 encoding formats are supported — R, I, S, B, U, and J.
+
+It's been tested running Fibonacci, bubble sort, and max-value search end-to-end on hardware.
 
 ---
 
-## Resource Utilization
+## How it's built
 
-| Resource | Usage |
-|----------|------:|
-| LUTs     | 18878 |
-| FFs      | 4384  |
+Eight modules wired together into a single combinational datapath. The PC updates on every rising clock edge and the next instruction is already in flight.
 
----
+| Module | What it does |
+|---|---|
+| `fetch` | Drives the PC onto the instruction memory bus |
+| `instruction_memory` | 128-entry ROM, loaded from a `.mem` hex file |
+| `decode` | Cracks the 32-bit instruction word, reconstructs the immediate |
+| `control` | Pure combinational logic — opcode in, control signals out |
+| `register_file` | 32 × 32-bit registers, x0 hardwired to zero |
+| `branch_control` | Evaluates branch conditions, asserts `branch_taken` |
+| `alu` | All 10 RV32I arithmetic and logic operations |
+| `data_memory` | Byte-addressable LUTRAM, supports sign- and zero-extended loads |
 
-## Performance
-
-- **Maximum Frequency (Fmax):** 99.79 MHz
-
----
-
-## Implementation Notes
-
-- Designed and synthesized using Xilinx Vivado
-- Instruction memory initialized using hex files
-- Focused on clarity and correctness over optimization
-- Suitable as a foundation for:
-  - Pipelined architectures
-  - Hazard detection/forwarding
-  - Cache integration
+All types, enums, and control structs live in `risc_pkg.sv` and are imported everywhere.
 
 ---
 
-## Future Improvements
- - Pipeline implementation (5-stage or deeper)
- - Hazard detection and forwarding
- - Expand data memory
- - Instruction/data cache integration
- - Branch prediction
- - Performance optimization (timing and area)
+## Numbers
 
+| Metric | Value |
+|---|---|
+| Fmax | **99.79 MHz** |
+| LUTs | 18,878 / 28000 (91%) |
+| Flip-flops | 4,384 / 40000 (7%) |
+
+---
+
+## Demo programs
+
+Three programs are included and have been verified on hardware.
+
+| Program | 
+|---|---|
+| Fibonacci | 
+| Bubble sort | 
+| Max search | 
+
+![Data memory](docs/images/data_memory.png)
+
+---
+
+## What's next
+
+- 5-stage pipeline with hazard detection and forwarding
+- Branch prediction
+- Instruction and data caches
+- RV32IM and RV32F/D
+- OS Implementation
