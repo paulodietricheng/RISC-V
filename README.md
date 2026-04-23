@@ -38,17 +38,15 @@ All types, enums, and control structs live in `risc_pkg.sv` and are imported eve
 
 ---
 
-## Numbers
+## Resource usage (xc7a35tcpg236)
 
 | Metric | Value |
 |---|---|
-| Fmax | **43.37 MHz** |
-| LUTs | 18,878 / 28000 (91%) |
-| Flip-flops | 4,384 / 41600 (11%) |
+| Fmax | **43.4 MHz** |
+| LUTs | 19575 / 28000 (94%) |
+| Flip-flops | 5152 / 41600 (12%) |
 
 ---
-
-## Demo programs
 
 ## Demo programs
 
@@ -59,7 +57,7 @@ where they can be inspected.
 ### Fibonacci sequence
 
 Computes the first 10 terms iteratively, storing each result as a word starting at
-address `0x00000000`. The two seed values (0 and 1) are written directly, then a loop
+address `0`. The two seed values (0 and 1) are written directly, then a loop
 computes `fib[i] = fib[i-1] + fib[i-2]` until `i = 10`.
 
 **Memory result:** `0, 1, 1, 2, 3, 5, 8, 13, 21, 34`
