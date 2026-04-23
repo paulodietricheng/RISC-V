@@ -4,7 +4,7 @@
 
 A fully functional RISC-V processor running on a real FPGA — built from scratch in SystemVerilog, one instruction per clock cycle. Every module is hand-rolled: no IP cores, no shortcuts.
 
-![Datapath diagram](docs/images/datapath.png)
+![Datapath diagram](docs/images/block_diagram.png)
 
 ---
 
