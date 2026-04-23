@@ -70,7 +70,7 @@ Sorts a 4-element array `[7, 2, 9, 4]` in ascending order using nested loops and
 in-place swaps. The outer loop shrinks the unsorted region each pass; the inner loop
 compares adjacent elements and swaps if needed.
 
-**Memory result:** `2, 4, 7, 9`
+**Memory result:** `9, 7, 4, 2`
 
 ![Waveforms](docs/images/bubble_sort_sim.png)
 
