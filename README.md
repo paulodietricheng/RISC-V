@@ -50,14 +50,44 @@ All types, enums, and control structs live in `risc_pkg.sv` and are imported eve
 
 ## Demo programs
 
-Three programs are included and have been verified on hardware.
+## Demo programs
 
+Three programs are included, assembled by hand, and verified in simulation. Each one
+initializes its own data in memory, runs its algorithm, and leaves results in data memory
+where they can be inspected.
 
-![Data memory](docs/images/data_memory.png)
+### Fibonacci sequence
+
+Computes the first 10 terms iteratively, storing each result as a word starting at
+address `0x00000000`. The two seed values (0 and 1) are written directly, then a loop
+computes `fib[i] = fib[i-1] + fib[i-2]` until `i = 10`.
+
+**Memory result:** `0, 1, 1, 2, 3, 5, 8, 13, 21, 34`
+
+![Waveforms](docs/images/fib_seq_sim.png)
+
+### Bubble sort
+
+Sorts a 4-element array `[7, 2, 9, 4]` in ascending order using nested loops and
+in-place swaps. The outer loop shrinks the unsorted region each pass; the inner loop
+compares adjacent elements and swaps if needed.
+
+**Memory result:** `2, 4, 7, 9`
+
+![Waveforms](docs/images/bubble_sort_sim.png)
+
+### Maximum value search
+
+Scans a 6-element signed array `[8, -21, 15, -3, 42, 17]`, tracking the running maximum
+in a register. When the loop finishes, the result is written to `mem[24]`.
+
+**Memory result:** `42` stored at address `24`
+
+![Waveforms](docs/images/find_max_sim.png)
 
 ---
 
-## What's next
+## Future updates
 
 - 5-stage pipeline with hazard detection and forwarding
 - Branch prediction
