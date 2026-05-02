@@ -43,7 +43,7 @@ All types, enums, and control structs live in `risc_pkg.sv` and are imported eve
 | Metric | Value |
 |---|---|
 | Fmax | **43.4 MHz** |
-| LUTs | 19575 / 28000 (94%) |
+| LUTs | 19575 / 20800 (94%) |
 | Flip-flops | 5152 / 41600 (12%) |
 
 ---
